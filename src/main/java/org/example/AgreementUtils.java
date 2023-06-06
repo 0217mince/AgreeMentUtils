@@ -23,6 +23,31 @@ import java.util.List;
  * @date 2023/6/2
  */
 public class AgreementUtils {
+
+    public static final String[] CN_NUMBERS = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
+    public static final String[] CN_UNITS = {"", "十", "百", "千", "万"};
+
+    public static String numberToChinese(int number) {
+        StringBuilder sb = new StringBuilder();
+        int unit = 0;
+        while (number > 0) {
+            int digit = number % 10;
+            if (digit == 0) {
+                if (sb.length() > 0 && sb.charAt(0) != '零') {
+                    sb.insert(0, "零");
+                }
+            } else {
+                sb.insert(0, CN_NUMBERS[digit] + CN_UNITS[unit]);
+            }
+            number /= 10;
+            unit++;
+        }
+        if (sb.length() == 0) {
+            sb.append("零");
+        }
+        return sb.toString();
+    }
+
     /**
      * 替换word文本中的字段，只替换第一个
      *
