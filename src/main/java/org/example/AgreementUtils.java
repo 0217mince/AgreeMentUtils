@@ -147,52 +147,52 @@ public class AgreementUtils {
         }
     }
 
-    public static void wordTurnToPdf(XWPFDocument document) {
-        // 创建一个 PDF 文档
-        PDDocument pdfDocument = new PDDocument();
-
-        // 将 Word 文档中的内容转换为 PDF
-        try {
-            // 遍历 Word 文档中的每个段落
-            for(XWPFParagraph paragraph: document.getParagraphs()) {
-                // 创建一个新的 PDF 段落
-                PDOutlineItem item = new PDOutlineItem();
-                item.setTitle(paragraph.getText());
-                pdfDocument.getDocumentCatalog().getDocumentOutline().addLast(item);
-                PDPage page = new PDPage();
-                pdfDocument.addPage(page);
-                PDPageContentStream contentStream = new PDPageContentStream(pdfDocument, page);
-
-                // 遍历段落中的每个 Run
-                for(XWPFRun run: paragraph.getRuns()) {
-                    // 如果 Run 中包含图片，则将其转换为 PDF 中的 Image
-                    if(run.getEmbeddedPictures() != null && run.getEmbeddedPictures().size() > 0) {
-                        for(XWPFPicture picture: run.getEmbeddedPictures()) {
-                            byte[] pictureData = picture.getPictureData().getData();
-                            PDImageXObject image = PDImageXObject.createFromByteArray(pdfDocument, pictureData, picture.getDescription());
-                            contentStream.drawImage(image, (Float) picture.getCTPicture().getSpPr().getXfrm().getOff().getX(), page.getMediaBox().getHeight() - (Float)picture.getCTPicture().getSpPr().getXfrm().getOff().getY() - image.getHeight());
-                        }
-                    }
-                    // 如果 Run 中不包含图片，则将其转换为 PDF 中的 Text
-                    else {
-                        contentStream.beginText();
-                        contentStream.setFont(PDType1Font.HELVETICA, run.getFontSizeAsDouble().floatValue());
-                        contentStream.newLineAtOffset(run.getFontSizeAsDouble().floatValue() * 0.25f, page.getMediaBox().getHeight() - paragraph.getSpacingAfter() - run.getFontSizeAsDouble().floatValue() * 1.25f);
-                        contentStream.showText(run.text());
-                        contentStream.endText();
-                    }
-                }
-
-                contentStream.close();
-            }
-
-            // 将 PDF 文档写入文件
-            FileOutputStream out = new FileOutputStream("文档.pdf");
-            pdfDocument.save(out);
-            out.close();
-            System.out.println("转换成功！");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void wordTurnToPdf(XWPFDocument document) {
+//        // 创建一个 PDF 文档
+//        PDDocument pdfDocument = new PDDocument();
+//
+//        // 将 Word 文档中的内容转换为 PDF
+//        try {
+//            // 遍历 Word 文档中的每个段落
+//            for(XWPFParagraph paragraph: document.getParagraphs()) {
+//                // 创建一个新的 PDF 段落
+//                PDOutlineItem item = new PDOutlineItem();
+//                item.setTitle(paragraph.getText());
+////                pdfDocument.getDocumentCatalog().getDocumentOutline().addLast(item);
+//                PDPage page = new PDPage();
+//                pdfDocument.addPage(page);
+//                PDPageContentStream contentStream = new PDPageContentStream(pdfDocument, page);
+//
+//                // 遍历段落中的每个 Run
+//                for(XWPFRun run: paragraph.getRuns()) {
+//                    // 如果 Run 中包含图片，则将其转换为 PDF 中的 Image
+//                    if(run.getEmbeddedPictures() != null && run.getEmbeddedPictures().size() > 0) {
+//                        for(XWPFPicture picture: run.getEmbeddedPictures()) {
+//                            byte[] pictureData = picture.getPictureData().getData();
+//                            PDImageXObject image = PDImageXObject.createFromByteArray(pdfDocument, pictureData, picture.getDescription());
+//                            contentStream.drawImage(image, (Float) picture.getCTPicture().getSpPr().getXfrm().getOff().getX(), page.getMediaBox().getHeight() - (Float)picture.getCTPicture().getSpPr().getXfrm().getOff().getY() - image.getHeight());
+//                        }
+//                    }
+//                    // 如果 Run 中不包含图片，则将其转换为 PDF 中的 Text
+//                    else {
+//                        contentStream.beginText();
+//                        contentStream.setFont(PDType1Font.HELVETICA, run.getFontSizeAsDouble().floatValue());
+//                        contentStream.newLineAtOffset(run.getFontSizeAsDouble().floatValue() * 0.25f, page.getMediaBox().getHeight() - paragraph.getSpacingAfter() - run.getFontSizeAsDouble().floatValue() * 1.25f);
+//                        contentStream.showText(run.text());
+//                        contentStream.endText();
+//                    }
+//                }
+//
+//                contentStream.close();
+//            }
+//
+//            // 将 PDF 文档写入文件
+//            FileOutputStream out = new FileOutputStream("C:\\Users\\小凡\\Desktop\\文档PDF.pdf");
+//            pdfDocument.save(out);
+//            out.close();
+//            System.out.println("转换成功！");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

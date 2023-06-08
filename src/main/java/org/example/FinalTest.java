@@ -5,6 +5,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
 
 /**
  * @author 小凡
@@ -28,7 +29,7 @@ public class FinalTest {
 
             AgreementUtils.replace(document,"team","柯小帅");
 
-            AgreementUtils.replace(document,"开始年","2023");
+            AgreementUtils.replace(document,"开始年",String.valueOf(new Date().getYear() + 1900));
             AgreementUtils.replace(document,"开始月","6");
             AgreementUtils.replace(document,"开始日","2");
 
@@ -54,10 +55,11 @@ public class FinalTest {
             AgreementUtils.setPicture(document,Files.newInputStream(Paths.get("C:\\Users\\小凡\\Desktop\\b.jpg")),"居民签字");
 
             // 保存Word文档
-            FileOutputStream out = new FileOutputStream("C:\\Users\\小凡\\Desktop\\signed_contract.docx");
-            document.write(out);
-            out.close();
+//            FileOutputStream out = new FileOutputStream("C:\\Users\\小凡\\Desktop\\signed_contract.docx");
+//            document.write(out);
+//            out.close();
 
+//            AgreementUtils.wordTurnToPdf(document);
             System.out.println("合同签名成功，已保存至 signed_contract.docx");
         } catch (Exception ex) {
             System.out.println("合同签名失败：" + ex.getMessage());
