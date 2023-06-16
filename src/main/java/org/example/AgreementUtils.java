@@ -123,12 +123,16 @@ public class AgreementUtils {
     public static void setPicture(XWPFDocument document, InputStream pictureData, String targetArea) throws IOException, InvalidFormatException {
         int signParagraphIndex = findParagraphIndex(document, targetArea);
         if (signParagraphIndex >= 0) {
-            XWPFParagraph signParagraph = document.getParagraphArray(signParagraphIndex);
+            XWPFParagraph signParagraph = document.getParagraphArray(signParagraphIndex + 1);
             XWPFRun signRun = signParagraph.createRun();
+//            signRun.addBreak();
+             //创建一个新段落
+//            XWPFParagraph newParagraph = document.createParagraph();
+//            XWPFRun newRun = newParagraph.createRun();
+            signRun.addPicture(pictureData, XWPFDocument.PICTURE_TYPE_PNG, "signature", Units.toEMU(150), Units.toEMU(50));
             signRun.addBreak();
-            signRun.addBreak();
-            signRun.addBreak();
-            signRun.addPicture(pictureData, XWPFDocument.PICTURE_TYPE_PNG, "signature", Units.toEMU(100), Units.toEMU(50));
+            // 将新段落插入到文档中
+//            document.setParagraph(newParagraph, signParagraphIndex + 1);
         }
     }
 

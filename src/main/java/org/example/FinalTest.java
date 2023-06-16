@@ -15,7 +15,7 @@ public class FinalTest {
     public static void main(String[] args) {
         try {
             // 加载Word文档
-            XWPFDocument document = new XWPFDocument(Files.newInputStream(Paths.get("C:\\Users\\小凡\\Desktop\\家医签约协议.docx")));
+            XWPFDocument document = new XWPFDocument(Files.newInputStream(Paths.get("C:\\Users\\小凡\\Desktop\\家医签约协议 - 副本.docx")));
 
             AgreementUtils.replace(document,"number","11010599570000742-004");
 
@@ -28,6 +28,8 @@ public class FinalTest {
             AgreementUtils.replace(document,"organ","浙大邵逸夫");
 
             AgreementUtils.replace(document,"team","柯小帅");
+
+            AgreementUtils.replace(document,"package","d啊大大大");
 
             AgreementUtils.replace(document,"开始年",String.valueOf(new Date().getYear() + 1900));
             AgreementUtils.replace(document,"开始月","6");
@@ -54,10 +56,10 @@ public class FinalTest {
 
             AgreementUtils.setPicture(document,Files.newInputStream(Paths.get("C:\\Users\\小凡\\Desktop\\b.jpg")),"居民签字");
 
-            // 保存Word文档
-//            FileOutputStream out = new FileOutputStream("C:\\Users\\小凡\\Desktop\\signed_contract.docx");
-//            document.write(out);
-//            out.close();
+//             保存Word文档
+            FileOutputStream out = new FileOutputStream("C:\\Users\\小凡\\Desktop\\signed_contract.docx");
+            document.write(out);
+            out.close();
 
 //            AgreementUtils.wordTurnToPdf(document);
             System.out.println("合同签名成功，已保存至 signed_contract.docx");

@@ -20,15 +20,15 @@ public class ExcelTest {
         // 打开一个文档
         XWPFDocument document = null;
         try {
-//            FileInputStream fis = new FileInputStream("C:\\Users\\小凡\\Desktop\\家医签约协议.docx");
-//            document = new XWPFDocument(fis);
-            String url = "https://docs-import-export-1251316161.cos.ap-guangzhou.myqcloud.com/export/docx/UShQsdJsUwSv/462d8f36a297e4b542660e28e6510189.json.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIDBAvQgh24SZPnxur0C9qfpkQp24pMCOu8%2F20230607%2Fap-guangzhou%2Fs3%2Faws4_request&X-Amz-Date=20230607T063556Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3D%22.docx%22%3Bfilename%2A%3DUTF-8%27%27%25E5%25AE%25B6%25E5%258C%25BB%25E7%25AD%25BE%25E7%25BA%25A6%25E5%258D%258F%25E8%25AE%25AE.docx&X-Amz-Signature=40907978c253030b6d566e1fbf51c35a4c338b6400a5a6e13d99ff5e560984da";
+            FileInputStream fis = new FileInputStream("C:\\Users\\小凡\\Desktop\\家医签约协议.docx");
+            document = new XWPFDocument(fis);
+//            String url = "https://docs-import-export-1251316161.cos.ap-guangzhou.myqcloud.com/export/docx/UShQsdJsUwSv/462d8f36a297e4b542660e28e6510189.json.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIDBAvQgh24SZPnxur0C9qfpkQp24pMCOu8%2F20230607%2Fap-guangzhou%2Fs3%2Faws4_request&X-Amz-Date=20230607T063556Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3D%22.docx%22%3Bfilename%2A%3DUTF-8%27%27%25E5%25AE%25B6%25E5%258C%25BB%25E7%25AD%25BE%25E7%25BA%25A6%25E5%258D%258F%25E8%25AE%25AE.docx&X-Amz-Signature=40907978c253030b6d566e1fbf51c35a4c338b6400a5a6e13d99ff5e560984da";
 
-            URL urlObject = new URL(url);
-            URLConnection connection = urlObject.openConnection();
-            InputStream is = connection.getInputStream();
-            document = new XWPFDocument(is);
-            is.close();
+//            URL urlObject = new URL(url);
+//            URLConnection connection = urlObject.openConnection();
+//            InputStream is = connection.getInputStream();
+//            document = new XWPFDocument(is);
+//            is.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,8 +75,8 @@ public class ExcelTest {
             run1.setFontSize(10);
             headerRow.getCell(0).setParagraph(paragraph);
 
-            headerRow.addNewTableCell().setText("年龄");
-            headerRow.addNewTableCell().setText("性别");
+            headerRow.addNewTableCell().setText("年龄1");
+            headerRow.addNewTableCell().setText("性别1");
             headerRow.getCell(0).setWidth("2412");
             headerRow.getCell(1).setWidth("4824");
             headerRow.getCell(2).setWidth("1608");
